@@ -11,6 +11,7 @@ smbd mysql
 ```
 
 ##Configuracion BD
+
 ```
 Se debe modificar el archivo hibernate.cfg.xml
  ubicado en la ruta /src/main/resources/hibernate.cfg.xml
@@ -31,7 +32,23 @@ ejecutar los comando
 --mvn clean
 --mvn install
 ```
+Estos comandos generaran los recursos necesarios para el despliegue de la aplicacion
+
+```
+Ejecutar los comandos
+mvn spring-boot:run
+```
+con este comando se inicia la aplicacion.
+
 Se debe acceder a la ruta(http://localhost:8080/general/teoricas)
+
+##puesta en produccion
+```
+generar el jar con el comando
+mvn package
+el jar se guardara en la carpeta target
+ por defecto con el nombre spring-test-0.0.1-SNAPSHOT.jar (Dicho nombre se puede cambiar)
+```
 
 ##Datos Generales de la aplicacion.
 Se siguio el patron de Diseño MVC.
