@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.spring.test.entity">
+    <class name="Curso">
+        <id name="idCurso" column="idCurso">
+            <generator class="native"/>
+        </id>
+        <property name="nombreCurso" type="java.lang.String"/>
+        <property name="horasDictadas" type="java.lang.Integer"/>
+        <property name="profesor"  type="java.lang.String"/>
+        <property name="nota" type="java.lang.Integer"/>
+        <property name="cantidadAsistencia" type="java.lang.Integer"/>
+        <many-to-one name="alumno" class="Alumno" not-null="true" column="idAlumno"/>
+    </class>
+</hibernate-mapping>

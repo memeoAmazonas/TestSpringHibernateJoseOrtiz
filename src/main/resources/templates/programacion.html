@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Programacion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="nav" style="display: flex; margin-top: 20px; justify-content: space-evenly;">
+    <a th:href="@{/general/teoricas}">Preguntas Teoricas</a>
+    <a th:href="@{/general/programacion}">Programacion</a>
+    <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a>
+    <a th:href="@{/persona/bean}">Spring</a>
+    <a th:href="@{/general/codigos}">Codigos Programacion</a>
+    <a th:href="@{/hibernate/codigos}">Codigos Hibernate</a>
+    <a th:href="@{/persona/codigos}">Codigos Spring</a>
+
+</nav>
+<hr>
+<div class="container">
+    <h1>Programacion</h1>
+    <hr>
+    <h4>1. Escribir una clase Singleton.</h4>
+    <h5>Class Singleton, se crearan dos objetos de la clase singleton, el resultado del mismo se encuentra en la parte inferior</h5>
+    <h4 th:text="${value}"></h4>
+    <h4 th:text="${value2}"></h4>
+
+    <div>
+        <br>
+        <h4>2. Escribir un programa que encuentre los caracteres duplicados de un String.</h4>
+        <div style="display: flex; justify-content: space-evenly">
+            <div style="display: block; border: 2px solid">
+                <h5>Palabra: aaavvveea1etyjngfffdcbhu</h5>
+                <ul th:each="du : ${duplicate}">
+                    <li th:text="${du}"></li>
+                </ul>
+            </div>
+            <div style="display: block; border: 2px solid">
+                <h5>Palabra: aaavvveea1etyjngfffdcbhucdfgmjl9uygc57</h5>
+                <ul th:each="du2 : ${duplicate2}" style="display: block">
+                    <li th:text="${du2}"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>3. Escribir un programa que reverse un String utilizando un algoritmo recursivo.</h4>
+        <div>
+            <h4>String 1: Esto es una prueba de reverse</h4>
+            <span th:text="${str}"></span>
+            <h4>String 2: Se puede reversar cualquier string</h4>
+            <span th:text="${str2}"></span>
+        </div>
+    </div>
+    <div>
+        <h4>Escribir un programa que ordene un Array de int utilizando Bubble Sort (puede utilizar un algoritmo
+            más óptimo si lo desea).</h4>
+        <span>Se utilizo el quicksort, debido a que su orden de complejidad es de O(n log n) en el mejor de los casos, y en el peor de los casos es de O(n^2), igual que el Bubble sort O(n^2) </span>
+        <div>
+            <h4>Lista 1: {5, 5, 6, 6, 4, 4, 5, 5, 4, 4, 6, 6, 5, 5 }</h4>
+            <div th:each="or1 : ${order1}" style="display: inline-block">
+                <span th:text="${or1}"><span>,</span></span>
+            </div>
+            <h4>Lista 2: { 5, 5, 6, 6, 45, 4,1,332,0, 5, 5, 4,1, 4,64, 6, 6, 51, 15, 17,9, 0 }</h4>
+            <div th:each="or2 : ${order2}" style="display: inline-block">
+                <span th:text="${or2}"><span>,</span></span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <hr>
+        <a th:href="@{/general/codigos}">Codigos</a>
+    </div>
+</div>
+<br>
+</body>
+</html>

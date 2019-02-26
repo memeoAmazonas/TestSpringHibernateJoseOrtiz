@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Persona Bean</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <nav class="nav" style="display: flex; margin-top: 20px; justify-content: space-evenly;">
+        <a th:href="@{/general/teoricas}">Preguntas Teoricas</a>
+        <a th:href="@{/general/programacion}">Programacion</a>
+        <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a>
+        <a th:href="@{/persona/bean}">Spring</a>
+        <a th:href="@{/general/codigos}">Codigos Programacion</a>
+        <a th:href="@{/hibernate/codigos}">Codigos Hibernate</a>
+        <a th:href="@{/persona/codigos}">Codigos Spring</a>
+
+    </nav>
+<hr>
+
+<div>
+    <h4>4. Escriba un bean de Spring (Clase y archivo XML) que modele la clase Persona con las siguientes
+        características:</h4>
+    <h5>
+        a. Variables: Nombre, Apellido, Fecha de nacimiento y Documento de identidad. Utilice los tipos de
+        dato que considere más adecuados.
+    </h5>
+    <h5>
+        b. Constructor que reciba como parámetro los siguientes valores para las variables declaradas
+        previamente: “Juan”, “Pérez”, “10/10/1985” y “3597174-5”
+    </h5>
+    <h5>
+        c. Variable “Número de versión” con el valor por defecto: “1.0”.
+    </h5>
+    <h5>
+        d. Variable “Aplicación” con un valor obtenido de un archivo de propiedades llamado
+        “application.properties”. Incluir si es posible la carga del archivo de propiedades en Spring.
+    </h5>
+    <div>
+        <h5>Respuesta: </h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Aplicacion</th>
+                    <th>Numero Version</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${persona.id}"></td>
+                <td th:text="${persona.name}"></td>
+                <td th:text="${persona.lastName}"></td>
+                <td th:text="${persona.birthDate}"></td>
+                <td th:text="${persona.aplication}"></td>
+                <td th:text="${persona.versionNumber}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<a th:href="@{/persona/codigos}">Codigos</a>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <nav class="nav" style="display: flex; margin-top: 20px; justify-content: space-evenly;">
+        <a th:href="@{/general/teoricas}">Preguntas Teoricas</a>
+        <a th:href="@{/general/programacion}">Programacion</a>
+        <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a>
+        <a th:href="@{/persona/bean}">Spring</a>
+        <a th:href="@{/general/codigos}">Codigos Programacion</a>
+        <a th:href="@{/hibernate/codigos}">Codigos Hibernate</a>
+        <a th:href="@{/persona/codigos}">Codigos Spring</a>
+
+    </nav>
+<hr>
+
+<div>
+
+    <h4>Codigo Java Class Model Persona</h4>
+    <code>
+        package com.spring.test.model;<br/><br/>
+        public class Persona {<br/>
+        private String id;<br/>
+        private String name;<br/>
+        private String lastName;<br/>
+        private String birthDate;<br/>
+        private String aplication;<br/>
+        private static final String versionNumber ="1.0";<br/>
+        <br/>
+        public Persona(String id, String name, String lastName, String birthDate) {<br/>
+        this.id = id;<br/>
+        this.name = name;<br/>
+        this.lastName = lastName;<br/>
+        this.birthDate = birthDate;<br/>
+        }<br/>
+        public void setAplication(String aplication) {<br/>
+        this.aplication = aplication;<br/>
+        }<br/>
+        public static String getVersionNumber() {<br/>
+        return versionNumber;<br/>
+        }<br/>
+        }
+    </code>
+</div>
+<hr>
+<br>
+<h4>Interface PersonaService</h4>
+<code>
+    package com.spring.test.service;<br>
+
+    import com.spring.test.model.Persona;<br><br>
+
+    public interface PersonaService {<br>
+    Persona getBeanPersona();<br>
+    }<br>
+
+</code>
+<hr>
+<div>
+    <h4>Codigo Java Class ServiceImpl Persona</h4>
+    <code>
+        package com.spring.test.service.impl;<br/>
+
+        import com.spring.test.model.Persona;<br/>
+        import com.spring.test.service.PersonaService;<br/>
+        import org.springframework.context.support.AbstractApplicationContext;<br/>
+        import org.springframework.context.support.ClassPathXmlApplicationContext;<br/>
+        import org.springframework.stereotype.Service;<br/><br/>
+
+        @Service("personaServiceImpl")<br/>
+        public class PersonaServiceImpl implements PersonaService {<br/><br/>
+
+        @Override<br/>
+        public Persona getBeanPersona() {<br/>
+        AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("springConfiguration.xml");<br/>
+        Persona persona = ctx.getBean("persona", Persona.class);<br/>
+        ctx.close();<br/>
+        return persona;<br/>
+        }<br/>
+        }<br/>
+    </code>
+</div>
+<hr>
+<div>
+    <h4>Codigo Java Class Controller Persona</h4>
+    <code>
+        package com.spring.test.controller;<br/><br/>
+
+        import com.spring.test.service.PersonaService;<br/>
+        import org.springframework.stereotype.Controller;<br/>
+        import org.springframework.web.servlet.ModelAndView;<br/>
+        import org.springframework.web.bind.annotation.GetMapping;<br/>
+        import org.springframework.beans.factory.annotation.Autowired;<br/>
+        import org.springframework.beans.factory.annotation.Qualifier;<br/>
+        import org.springframework.web.bind.annotation.RequestMapping;<br/><br/>
+
+        @Controller<br/>
+        @RequestMapping("/persona")<br/>
+        public class PersonaController {<br/><br/>
+        @Autowired<br/>
+        @Qualifier("personaServiceImpl")<br/>
+        private PersonaService personaService;<br/><br/>
+
+        @GetMapping("/bean")<br/>
+        public ModelAndView viewBean(){<br/>
+        ModelAndView modelAndView = new ModelAndView("persona");<br/>
+        modelAndView.addObject("persona",personaService.getBeanPersona());<br/>
+        return  modelAndView;<br/>
+        }<br/><br/>
+        @GetMapping("/codigos")<br/>
+        public ModelAndView viewCodeBean(){<br/>
+        ModelAndView modelAndView = new ModelAndView("personaCode");<br/>
+        return modelAndView;<br/>
+        }<br/>
+
+        }<br/>
+    </code>
+</div>
+<hr>
+<div>
+    <h4>Codigo Xml Configuracion de Spring para la creacion del Bean</h4>
+    <code th:text="${xmlCode}">
+
+    </code>
+</div>
+</div>
+</body>
+</html>

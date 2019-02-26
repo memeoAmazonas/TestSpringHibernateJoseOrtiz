@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Preguntas Teoricas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="nav" style="display: flex; margin-top: 20px; justify-content: space-evenly;">
+    <a th:href="@{/general/teoricas}">Preguntas Teoricas</a>
+    <a th:href="@{/general/programacion}">Programacion</a>
+    <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a>
+    <a th:href="@{/persona/bean}">Spring</a>
+    <a th:href="@{/general/codigos}">Codigos Programacion</a>
+    <a th:href="@{/hibernate/codigos}">Codigos Hibernate</a>
+    <a th:href="@{/persona/codigos}">Codigos Spring</a>
+
+</nav>
+<hr>
+<div class="container" style="font-style: italic; text-align: justify;">
+    <div>
+        <h1> Generales</h1>
+        <h4> 1.¿Qué es JRE?</h4>
+        <h5> a. JRE es una aplicación gráfica basada en Java.</h5>
+        <h5>b. JRE es un framework de desarrollo de aplicaciones.</h5>
+        <h5 style="color: blue">c. JRE es una implementación de la Java Virtual Machine que ejecuta programas Java.</h5>
+        <h5>d. Ninguna de las anteriores.</h5>
+
+        <h4>2.    ¿Qué es una clase? </h4>
+        <h5>a. Una clase es un tipo de datos especial.</h5>
+        <h5>b. Una clase es utilizada para asignar memoria a un tipo de datos.</h5>
+        <h5 style="color: blue">c. Una clase es una plantilla con la cual se crean objetos individuales.</h5>
+        <h5>d. Únicamente a y b son correctas.</h5>
+
+        <h4> 3. ¿Qué es una interfaz?</h4>
+        <h5 style="color: blue">a. Una interfaz es una colección de métodos abstractos.</h5>
+        <h5>b. Una interfaz es una clase abstracta.</h5>
+        <h5>c. Una interfaz es una clase concreta.</h5>
+        <h5>d. Ninguna de las anteriores.</h5>
+
+        <h4>4.¿A qué se refiere el concepto de “herencia”?</h4>
+        <h5>a. Es el proceso por el cual un objeto adquiere las propiedades de otro..</h5>
+        <h5>b. Es la habilidad de un objeto de tomar múltiples formas..</h5>
+        <h5>c. Es una técnica para definir diferentes métodos del mismo tipo..</h5>
+        <h5 style="color: blue"> d. Ninguna de las anteriores.</h5>
+
+        <h4>5. ¿Qué es polimorfismo (polymorphism)?</h4>
+        <h5>a. Polimorfismo es una técnica para definir diferentes objetos del mismo tipo.</h5>
+        <h5>b. Polimorfismo es la habilidad de un objeto de tomar múltiples formas.</h5>
+        <h5>c. Polimorfismo es una técnica para definir diferentes métodos del mismo tipo.</h5>
+        <h5 style="color: blue"> d. Ninguna de las anteriores.</h5>
+
+        <h4>36. ¿Cuál de las siguientes afirmaciones es correcta en relación a las superclases?</h4>
+        <h5> a. Las variables, métodos y constructores declarados como “private” sólo pueden ser accedidos por
+            los miembros de la superclase.</h5>
+        <h5>b. Las variables, métodos y constructores declarados como “protected” pueden ser accedidos por
+            cualquier subclase de la superclase.</h5>
+        <h5> c. Las variables, métodos y constructores declarados como “public” pueden ser accedidos por
+            cualquier clase</h5>
+        <h5 style="color: blue"> d. Todas las anteriores. </h5>
+
+        <h4> 7.¿Qué es una variable de instancia?</h4>
+        <h5> a. Las variables de instancia son variables estáticas declaradas dentro de una clase fuera de los
+            métodos.</h5>
+        <h5>b. Las variables de instancia son variables definidas dentro de métodos, constructores o bloques.</h5>
+        <h5 style="color: blue">c. Las variables de instancia son variables declaradas dentro de una clase pero fuera de los métodos.</h5>
+        <h5>d. Ninguna de las anteriores.</h5>
+
+        <h4> 8. ¿Cuál de los siguientes es el valor por defecto de una variable de instancia?</h4>
+        <h5>a. null.</h5>
+        <h5>b. 0.</h5>
+        <h5 style="color: blue">c. Depende del tipo de la variable.</h5>
+        <h5> d. No asignado.</h5>
+
+        <h4></h4> 9.  ¿Cuándo se ejecuta el bloque “finally”?</h4>
+        <h5>a. Siempre que el bloque “try” se ejecute, sin importar si ocurre una excepción o no.</h5>
+        <h5 style="color: blue">b. Siempre que un método se ejecute, sin importar si ocurre una excepción o no.</h5>
+        <h5>c. Siempre que el bloque “try” se ejecute, si no ocurre una excepción.</h5>
+        <h5> d. Siempre que el bloque “try” se ejecute y ocurra una excepción.</h5>
+
+        <h4>10. ¿Qué es un objeto inmutable?</h4>
+        <h5>a. Un objeto inmutable es aquel que sólo puede ser modificado una vez creado.</h5>
+        <h5 style="color: blue"> b. Un objeto inmutable es aquel que no puede ser modificado una vez creado.</h5>
+        <h5>c. Un objeto inmutable es una instancia de una clase abstracta.</h5>
+        <h5>d. Ninguna de las anteriores.</h5>
+
+        <h4>11. ¿Cuál de las siguientes afirmaciones es correcta en relación a los modificadores por defecto de los
+            miembros de clase?</h4>
+
+        <h5>a. Por defecto, variables, métodos y constructores pueden ser accedidos únicamente por las
+            subclases.</h5>
+        <h5>b. Por defecto, variables, métodos y constructores pueden ser accedidos por cualquier clase de
+            cualquier paquete.</h5>
+        <h5>c. Por defecto, variables, métodos y constructores pueden ser accedidos por cualquier clase del
+            mismo paquete.</h5>
+        <h5 style="color: blue">d. Ninguna de las anteriores.</h5>
+
+        <h4> 12. ¿Cuál de las siguientes afirmaciones es correcta en relación a clases marcadas como “final”?</h4>
+        <h5>a. Una clase declarada como “final” es una clase final.</h5>
+        <h5>b. Las clases finales son creadas para para que los métodos implementados por dicha clase no
+            puedan ser sobre escritos.</h5>
+        <h5>c. Una clase final no puede ser extendida.</h5>
+        <h5 style="color: blue">d. Todas las anteriores.</h5>
+
+        <h4>13. Con relación al concepto de sobre escritura de métodos (“method overriding”)...</h4>
+        <h5> a. Si una subclase utiliza un método que ya fue definido en una clase padre, es conocido como sobre
+            escritura de método.</h5>
+        <h5 style="color: blue">b. Si una clase provee una implementación específica de un método que ya fue provisto por una
+            clase padre, es conocido como sobre escritura de método.</h5>
+        <h5>c. Las dos afirmaciones anteriores son correctas.</h5>
+        <h5>d. Ninguna de las anteriores.</h5>
+
+        <h4>14. ¿Qué es la sobrecarga (“overloading”) de métodos?</h4>
+        <h5 style="color: blue">a. Métodos con el mismo nombre pero con diferentes parámetros.</h5>
+        <h5>b. Métodos con el mismo nombre pero que retornan diferentes tipos de datos.</h5>
+        <h5>c. Métodos con el mismo nombre, mismos tipos de parámetros pero diferentes nombre de
+            parámetros.</h5>
+        <h5>d. Todas las anteriores.</h5>
+
+        <h4>15. ¿Qué es encapsulamiento?</h4>
+
+        <h5>a. Encapsulamiento es una técnica para definir diferentes métodos de un mismo tipo.</h5>
+        <h5>b. Encapsulamiento es la habilidad de un objeto para tomar múltiples formas.</h5>
+        <h5 style="color: blue"> c. Encapsulamiento es la técnica de declarar las variables de clase como privadas y proveer acceso a
+            las mismas únicamente a través de métodos públicos.</h5>
+        <h5>d. Todas las anteriores.</h5>
+
+        <h4>16. ¿Qué es la composición de objetos?</h4>
+        <h5> a. La composición de objetos es una estructura de datos.</h5>
+        <h5> b. La composición de objetos es una forma de crear un objeto.</h5>
+        <h5 style="color: blue">c. La composición de objetos es guardar una referencia de una clase dentro de otra clase.</h5>
+        <h5>d. Ninguna de las anteriores.</h5>
+
+        <h4>17. ¿Qué es la serialización de objetos?</h4>
+        <h5>a. La serialización es el proceso de escribir el estado de un objeto en otro objeto.</h5>
+        <h5 style="color: blue"> b. La serialización es el proceso de escribir el estado de un objeto en un stream de bytes.</h5>
+        <h5>c. Las dos respuestas anteriores son correctas.</h5>
+        <h5>d. Ninguna de las anteriores.</h5>
+
+        <h4>18. ¿Qué es la interfaz Set?</h4>
+        <h5>a. Un Set es una colección que contiene elementos junto con su clave.</h5>
+        <h5>b. Un Set es una colección que contiene el código hash de los elementos.</h5>
+        <h5 style="color: blue">c. Un Set es una colección que no contiene elementos duplicados.</h5>
+        <h5>d. Un Set es una colección que contiene elementos duplicados.</h5>
+
+        <h4>19. ¿Qué es un NullPointerException?</h4>
+        <h5>a. Un NullPointerException es arrojado cuando se asigna “null” a una propiedad de un objeto.</h5>
+        <h5 style="color: blue">b. Un NullPointerException es arrojado cuando se llama un método o se intenta acceder a una
+            propiedad de un objeto nulo.</h5>
+        <h5>c. Un NullPointerException es arrojado cuando se asigna “null” a un objeto.</h5>
+        <h5>d. Ninguna de las anteriores.</h5>
+
+        <h4>20. ¿Qué sucede cuando se invoca al método sleep() de un hilo?</h4>
+        <h5>a. El hilo vuele al estado “En espera”.</h5>
+        <h5>b. El hilo vuelve al estado “Listo”.</h5>
+        <h5>c. El hilo comienza su ejecución.</h5>
+        <h5 style="color: blue"> d. Ninguna de las anteriores.</h5>
+    </div>
+    <div>
+        <h1>Spring</h1>
+        <div>
+            <h4>
+                1. ¿Qué es Spring?
+            </h4>
+            <h5>Respuesta: Es un framework basado en java, basado en la inyeccion de dependencias la cual es un tipo de inversion de control.
+                Proporciona un modelo de programación y configuración completa para las aplicaciones empresariales modernas basadas en Java – en cualquier tipo de plataforma de despliegue.
+                Un elemento clave de Spring es el apoyo infraestructural a nivel de aplicación: Spring se centra en la “fontanería” de las aplicaciones empresariales
+                para que los equipos pueden centrarse en la lógica de negocios a nivel de aplicación, sin ataduras innecesarias a los entornos de implementación específicos. <span><a
+                        href="https://www.springla.io/spring/spring-framework/" target="_blank">fuente</a> </span> </h5>
+            <h4>
+                2. ¿Enumere y explique brevemente algunos de los beneficios de utilizar Spring?
+            </h4>
+            <h5>Respuesta: </h5>
+            <ul>
+                <li>Spring está organizado de forma modular. A pesar de la cantidad de paquetes y clases que tiene, solo debemos ocuparnos de aquellos que necesitemos para nuestro desarrollo e ignorar el resto.</li>
+                <li>Utiliza algunas de las tecnologías existentes, como varios frameworks ORM, JEE, temporizadores Quartz y JDK, frameworks de registro y otras tecnologías de visualización.</li>
+                <li>
+                    Probar una aplicación escrita con Spring es un proceso simple, porque el código dependiente del entorno se traslada a este framework. Además, mediante el uso de JavaBeanstyle, se vuelve más fácil utilizar la inyección de dependencia para hacer pruebas, para ello podemos hacer uso de datos dummies o mocks, para ver las respuestas.
+                </li>
+                <li>
+                    El framework web de Spring es un framework MVC web bien diseñado, que proporciona una excelente alternativa a los frameworks web como Struts u otros frameworks web sobre diseñados o menos populares.
+                </li>
+                <li>
+                    Spring proporciona una API para traducir excepciones específicas de la tecnología (como por ejemplo las generadas por JDBC, Hibernate o JDO) en excepciones consistentes y no verificadas.
+                </li>
+                <li>
+                    Los contenedores de IoC (Inversion of Control) tienden a ser livianos, especialmente cuando se comparan con los Enterprise JavaBeans (EJB). Esto es ideal para desarrollar y desplegar aplicaciones en maquinas con memoria y recursos limitados.
+                </li>
+                <li>
+                    Spring proporciona una interfaz de gestión de transacciones coherente que puede reducirse a una transacción local (utilizando una única base de datos) y ampliarse a transacciones globales.
+                </li>
+                <li>
+                    Permite separar el registro, la auditoría, las transacciones declarativas, la seguridad, el almacenamiento en caché, de la lógica comercial a través de la AOP (Programación Orientada a Aspectos).
+                </li>
+                <li>
+                    Cuenta con plantillas para diversas tecnologías entre la cuales podemos destacar las siguientes: JDBC, Hibernate y JPA, de forma tal que no hay necesidad de escribir un código extenso, ya que con estas plantillas simplifica el trabajo en cuanto a los pasos básicos a implementar de estas tecnologías.
+                </li>
+                <a href="https://openwebinars.net/blog/conoce-que-es-spring-framework-y-por-que-usarlo/" target="_blank">fuente</a>
+            </ul>
+            <h4>
+                3. ¿Qué significa Inyección de Dependencias (“Dependency Injection”)?
+            </h4>
+            <h5>Respuesta: consiste que en lugar de que cada clase tenga que instanciar los objetos que necesite, sea Spring el que inyecte esos objetos, lo que quiere decir que es Spring el que creara los objetos y cuando una clase necesite usarlos se le pasaran.
+                <a href="https://programandoointentandolo.com/2013/05/inyeccion-de-dependencias-en-spring.html" target="_blank"> Fuente</a></h5>
+        </div>
+        <br><br>
+    </div>
+</div>
+</body>
+</html>

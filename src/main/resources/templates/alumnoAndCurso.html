@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+<nav class="nav" style="display: flex; margin-top: 20px; justify-content: space-evenly;">
+    <a th:href="@{/general/teoricas}">Preguntas Teoricas</a>
+    <a th:href="@{/general/programacion}">Programacion</a>
+    <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a>
+    <a th:href="@{/persona/bean}">Spring</a>
+    <a th:href="@{/general/codigos}">Codigos Programacion</a>
+    <a th:href="@{/hibernate/codigos}">Codigos Hibernate</a>
+    <a th:href="@{/persona/codigos}">Codigos Spring</a>
+
+</nav>>
+
+<div class="container">
+    <hr>
+    <h1>Hibernate</h1>
+    <hr>
+
+    <div>
+        <h4> 1. Crear una clase Curso, la cual contiene los siguientes atributos:</h4>
+        <ul>
+            <li>Id</li>
+            <li>Nombre de curso</li>
+            <li>Horas dictadas</li>
+            <li>Profesor</li>
+        </ul>
+        <div>
+            <h5>Clase Curso</h5>
+            <code>
+                package com.spring.test.entity;<br><br>
+                import javax.persistence.*;<br><br>
+                public class Curso {<br>
+                private Long idCurso;<br>
+                private int nota;<br>
+                private String nombreCurso;<br>
+                private int horasDictadas;<br>
+                private String profesor;<br>
+                private Alumno alumno;<br>
+                private int cantidadAsistencia;<br>
+                public Alumno getAlumno() {<br>
+                return alumno;<br>
+                }<br><br>
+                public void setAlumno(Alumno alumno) {<br>
+                this.alumno = alumno;<br>
+                }<br><br>
+                public Curso() {<br>
+                }<br><br>
+                public Curso(String nombreCurso, int horasDictadas, String profesor,int nota, int cantidadAsistencia, Alumno alumno) {<br>
+                this.nombreCurso = nombreCurso;<br>
+                this.horasDictadas = horasDictadas;<br>
+                this.profesor = profesor;<br>
+                this.alumno = alumno;<br>
+                this.nota = nota;<br>
+                this.cantidadAsistencia = cantidadAsistencia;<br>
+                }<br><br>
+                public Long getIdCurso() {<br>
+                return idCurso;<br>
+                }<br><br>
+                public void setIdCurso(Long idCurso) {<br>
+                this.idCurso = idCurso;<br>
+                }<br><br>
+                public String getNombreCurso() {<br>
+                return nombreCurso;<br>
+                }<br><br>
+                public int getNota() {<br>
+                return nota;<br>
+                }<br><br>
+                public void setNota(int nota) {<br>
+                this.nota = nota;<br>
+                }<br><br>
+                public int getCantidadAsistencia() {<br>
+                return cantidadAsistencia;<br>
+                }<br><br>
+                public void setCantidadAsistencia(int cantidadAsistencia) {<br>
+                this.cantidadAsistencia = cantidadAsistencia;<br>
+                }<br><br>
+                public void setNombreCurso(String nombreCurso) {<br>
+                this.nombreCurso = nombreCurso;<br>
+                }<br><br>
+                public int getHorasDictadas() {<br>
+                return horasDictadas;<br>
+                }<br><br>
+                public void setHorasDictadas(int horasDictadas) {<br>
+                this.horasDictadas = horasDictadas;<br>
+                }<br><br>
+                public String getProfesor() {<br>
+                return profesor;<br>
+                }<br><br>
+                public void setProfesor(String profesor) {<br>
+                this.profesor = profesor;<br>
+                }<br><br>
+                }<br>
+
+            </code>
+        </div>
+        <hr>
+        <h4> 2. Crear una clase Alumno, la cual contiene los siguientes atributos:</h4>
+        <ul>
+            <li>Id</li>
+            <li>Nombre</li>
+            <li>Fecha de nacimiento</li>
+            <li>Dirección</li>
+        </ul>
+        <div>
+            <h5>Clase Alumno</h5>
+            <code>
+                package com.spring.test.entity;<br><br>
+                import java.io.Serializable;<br>
+                import java.util.Set;<br><br>
+                public class Alumno implements Serializable {<br><br>
+                private Long idAlumno;<br>
+                private String nombre;<br>
+                private String apellido;<br>
+                private String fechaNacimiento;<br>
+                private String direccion;<br>
+                private Set&lt;Curso> cursos;<br><br>
+                public Alumno() {<br>
+                }<br><br>
+                public Alumno(String nombre, String apellido, String fechaNacimiento, String direccion) {<br>
+                this.nombre = nombre;<br>
+                this.apellido = apellido;<br>
+                this.fechaNacimiento = fechaNacimiento;<br>
+                this.direccion = direccion;<br>
+                }<br><br>
+                public Long getIdAlumno() {<br>
+                return idAlumno;<br>
+                }<br><br>
+                public void setIdAlumno(Long idAlumno) {<br>
+                this.idAlumno = idAlumno;<br>
+                }<br><br>
+                public String getNombre() {<br>
+                return nombre;<br>
+                }<br><br>
+                public void setNombre(String nombre) {<br>
+                this.nombre = nombre;<br>
+                }<br><br>
+                public String getApellido() {<br>
+                return apellido;<br>
+                }<br><br>
+                public void setApellido(String apellido) {<br>
+                this.apellido = apellido;<br>
+                }<br><br>
+                public String getFechaNacimiento() {<br>
+                return fechaNacimiento;<br>
+                }<br><br>
+                public void setFechaNacimiento(String fechaNacimiento) {<br>
+                this.fechaNacimiento = fechaNacimiento;<br>
+                }<br><br>
+                public String getDireccion() {<br>
+                return direccion;<br>
+                }<br><br>
+                public void setDireccion(String direccion) {<br>
+                this.direccion = direccion;<br>
+                }<br><br>
+                public Set&lt;Curso> getCursos() {<br>
+                return cursos;<br>
+                }<br><br>
+                public void setCursos(Set&lt;Curso> cursos) {<br>
+                this.cursos = cursos;<br>
+                }<br><br>
+                }
+
+            </code>
+        </div>
+        <hr>
+        <h4>3. Crear una asociación entre Alumno y Curso para que cada alumno tenga un conjunto de cursos y en
+            cada uno de ellos se le pueda asociar:</h4>
+        <ul>
+            <li>Cantidad de Asistencias</li>
+            <li>Nota</li>
+        </ul>
+        <hr>
+        <br>
+        <div>
+            <h5>hbm.xml Alumno</h5>
+            <code th:text="${xmlCodeAlumno}">
+            </code>
+        </div>
+        <br>
+        <hr>
+        <div>
+            <h5>hbm.xml Curso</h5>
+            <code th:text="${xmlCodeCurso}">
+            </code>
+        </div>
+        <br>
+        <hr>
+        <div>
+            <h5>hibernate.cfg.xml </h5>
+            <code th:text="${xmlCodeHibernate}">
+            </code>
+        </div>
+        <br>
+        <hr>
+        <div>
+            <h4>5. En base a las estructuras creadas anteriormente:</h4>
+            <h5>a. Modele las tablas que se crearán en la Base de Datos.</h5>
+            <div style="border-style: solid;"> <img  src="../static/img/entidadRelacion.png" th:src="@{/img/entidadRelacion.png}"></div>
+        </div>
+        <br>
+        <hr>
+        <h5>b. Escriba las siguientes consultas en HQL:(Nota, en los  <a th:href="@{/hibernate/codigos}">Codigos Hibernate</a>, en el archivo CreateQueryImpl se encuentra el codigo de las consultas)</h5>
+        <span>i. Listar todos los cursos del alumno “Juan”.</span>
+        <br>
+        <br>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Nombre de Curso</th>
+                <th>Horas Dictadas</th>
+                <th>Profesor</th>
+                <th>Cantidad Asistencia</th>
+                <th>Nota</th>
+
+            </tr>
+            </thead>
+            <tbody th:each="person: ${listCursosJuan}">
+            <tr>
+                <td th:text="${person.nombreCurso}"></td>
+                <td th:text="${person.horasDictadas}"></td>
+                <td th:text="${person.profesor}"></td>
+                <td th:text="${person.cantidadAsistencia}"></td>
+                <td th:text="${person.nota}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <hr>
+        <span>ii. Listar todos los alumnos cuyos nombres comiencen con “A”.</span>
+        <br>
+        <br>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Direccion</th>
+                <th>Fecha nacimiento</th>
+            </tr>
+            </thead>
+            <tbody th:each="person: ${listPersonA}">
+            <tr>
+                <td th:text="${person.nombre}"></td>
+                <td th:text="${person.apellido}"></td>
+                <td th:text="${person.direccion}"></td>
+                <td th:text="${person.fechaNacimiento}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <span>iii. Calcular el promedio de notas del alumno “Pedro”</span>
+        <br>
+        <span>Promedio de notas de Pedro: <span style="font-weight: bold" th:text="${average}"></span></span>
+        <hr>
+        <span>iv. Listar los 2 alumnos con más asistencias del curso “Calculo Numérico”.</span><br><br>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Direccion</th>
+                <th>nombre del curso</th>
+                <th>Notas</th>
+                <th>Horas dictadas</th>
+                <th>Cantidad asistencia</th>
+                <th>Profesor</th>
+            </tr>
+            </thead>
+            <tbody th:each="person: ${listPersonCalculo}">
+            <tr>
+                <td th:text="${person.Alumno.nombre}"></td>
+                <td th:text="${person.Alumno.apellido}"></td>
+                <td th:text="${person.Alumno.direccion}"></td>
+                <td th:text="${person.nombreCurso}"></td>
+                <td th:text="${person.nota}"></td>
+                <td th:text="${person.horasDictadas}"></td>
+                <td th:text="${person.cantidadAsistencia}"></td>
+                <td th:text="${person.profesor}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+</div>
+</body>
+<head>
+    <meta charset="UTF-8">
+    <title>Curso y Estudiante</title>
+</head>
+</html>

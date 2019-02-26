@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.spring.test.entity">
+    <class name="Alumno">
+        <id name="idAlumno" column="idAlumno">
+            <generator class="native"/>
+        </id>
+        <property name="nombre" type="java.lang.String"/>
+        <property name="apellido" type="java.lang.String"/>
+        <property name="direccion"  type="java.lang.String"/>
+        <property name="fechaNacimiento" type="java.lang.String"/>
+        <set name="cursos" inverse="true" cascade="all">
+            <key column="idCurso" not-null="true"/>
+            <one-to-many class="Curso" />
+        </set>
+    </class>
+</hibernate-mapping>

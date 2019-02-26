@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>codigos hibernate</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <nav class="nav" style="display: flex; margin-top: 20px; justify-content: space-evenly;">
+        <a th:href="@{/general/teoricas}">Preguntas Teoricas</a>
+        <a th:href="@{/general/programacion}">Programacion</a>
+        <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a>
+        <a th:href="@{/persona/bean}">Spring</a>
+        <a th:href="@{/general/codigos}">Codigos Programacion</a>
+        <a th:href="@{/hibernate/codigos}">Codigos Hibernate</a>
+        <a th:href="@{/persona/codigos}">Codigos Spring</a>
+
+    </nav>
+    <hr>
+    <h4>en este apartado se mostraran solo los archivos que hacen falta para completar el flujo, no se mostraran los archivos ya definidos en  <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a></h4>
+    <br>
+    <h5>Class Configuracion para BD de Hibernate</h5>
+    <br>
+    <code>
+        package com.spring.test.utils;
+        <br><br>
+        import org.hibernate.SessionFactory;<br>
+        import org.hibernate.cfg.Configuration;<br>
+        <br>
+        import java.io.File;<br><br>
+
+        public class HibernateUtil {<br>
+        private static final SessionFactory sessionFactory = buildSessionFactory();<br><br>
+
+        private static SessionFactory buildSessionFactory() {<br>
+        try {<br>
+        return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();<br>
+        }<br>
+        catch (Throwable ex) {<br>
+        System.err.println("Initial SessionFactory creation failed." + ex);<br>
+        throw new ExceptionInInitializerError(ex);<br>
+        }<br>
+        }<br>
+        public static SessionFactory getSessionFactory() {<br>
+        return sessionFactory;<br>
+        }<br>
+        }<br>
+    </code><br>
+    <h5>interface CreateQuery</h5>
+    <br>
+    <code>
+        package com.spring.test.repository; <br><br>
+
+        import com.spring.test.entity.Alumno;<br>
+        import com.spring.test.entity.Curso;<br><br>
+
+        import java.util.List;<br><br>
+
+        public interface CreateQuery {<br>
+        void setData();<br>
+        Double averageNotasPedro();<br>
+        List&lt;Curso> listCursosJuan();<br>
+        List&lt;Alumno> listCursosNombreEqualA();<br>
+        List&lt;Curso> getAlumnosMaximoCalculo();<br>
+        }<br><br>
+    </code>
+    <h5>class CreateQueryImpl (en este archivo se encuentran los insert de las entidades Curso y Alumno, si desean pueden modificar los valores que tienen por defecto y probar con otra data. la estructura de las entidades se encuentran en  <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a>  )</h5>
+    <br>
+    <code>
+        package com.spring.test.repository.impl;<br><br>
+
+        import com.spring.test.entity.Alumno;<br>
+        import com.spring.test.entity.Curso;<br>
+        import com.spring.test.repository.CreateQuery;<br>
+        import com.spring.test.utils.HibernateUtil;<br>
+        import org.hibernate.Session;<br>
+        import org.hibernate.query.Query;<br>
+        import org.hibernate.resource.transaction.spi.TransactionStatus;<br><br>
+
+        import java.util.HashSet;<br>
+        import java.util.List;<br>
+        import java.util.Set;<br>
+
+        public class CreateQueryImpl implements CreateQuery {<br><br>
+
+
+        @Override<br>
+        public void setData() {<br>
+        Session session = HibernateUtil.getSessionFactory().openSession();<br>
+        Alumno a1 = new Alumno("juan","gonzales","06/12/1983","caracas");<br>
+        Curso c1 = new Curso("curso1",20,"prof1",3,3,a1);<br>
+        Curso c2 = new Curso("curso2",30,"prof2",4,4,a1);<br>
+        Curso c3 = new Curso("curso3",40,"prof3",5,5,a1);<br>
+        Curso c4 = new Curso("curso4",50,"prof4",6,6,a1);<br>
+        Set&lt;Curso> cursos = new HashSet&lt;>();<br>
+        cursos.add(c1);<br>
+        cursos.add(c2);<br>
+        cursos.add(c3);<br>
+        cursos.add(c4);<br>
+        a1.setCursos(cursos);<br>
+        session.save(a1);<br>
+        if (session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {<br>
+        session.getTransaction().commit();<br>
+        }<br>
+        Alumno a2 = new Alumno("Alejandro","fernandez","06/12/1983","caracas");<br>
+        Curso c11 = new Curso("calculo numerico",20,"prof1",131,3,a2);<br>
+        Curso c12 = new Curso("curso2",30,"prof2",41,14,a2);<br>
+        Curso c13 = new Curso("curso3",40,"prof3",51,5,a2);<br>
+        Curso c14 = new Curso("curso4",50,"prof4",61,6,a2);<br>
+        cursos.clear();<br>
+        cursos.add(c11);<br>
+        cursos.add(c12);<br>
+        cursos.add(c13);<br>
+        cursos.add(c14);<br>
+        a2.setCursos(cursos);<br>
+        session.save(a2);<br>
+        if (session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {<br>
+        session.getTransaction().commit();<br>
+        }<br>
+        Alumno a5 = new Alumno("Pedro","alcantara","06/12/1983","caracas");<br>
+        Curso c21 = new Curso("calculo numerico",20,"prof1",311,13,a5);<br>
+        Curso c22 = new Curso("curso2",30,"prof2",41,4,a5);<br>
+        Curso c23 = new Curso("curso3",40,"prof3",51,5,a5);<br>
+        Curso c24 = new Curso("curso4",50,"prof4",61,6,a5);<br>
+        cursos.clear();<br>
+        cursos.add(c21);<br>
+        cursos.add(c22);<br>
+        cursos.add(c23);<br>
+        cursos.add(c24);<br>
+        a5.setCursos(cursos);<br>
+        session.save(a5);<br>
+        if (session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {<br>
+        session.getTransaction().commit();<br>
+        }<br>
+        Alumno a4 = new Alumno("Luis","perez","06/12/1983","caracas");<br>
+        Curso c31 = new Curso("calculo numerico",20,"prof1",310,19,a4);<br>
+        Curso c32 = new Curso("curso2",30,"prof2",41,4,a4);<br>
+        Curso c33 = new Curso("curso3",40,"prof3",51,5,a4);<br>
+        Curso c34 = new Curso("curso4",50,"prof4",61,6,a4);<br>
+        cursos.clear();<br>
+        cursos.add(c31);<br>
+        cursos.add(c32);<br>
+        cursos.add(c33);<br>
+        cursos.add(c34);<br>
+        a4.setCursos(cursos);<br>
+        session.save(a4);<br>
+        if (session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {<br>
+        session.getTransaction().commit();<br>
+        }<br>
+        Alumno a3 = new Alumno("Andres","peleaez","06/12/1983","caracas");<br>
+        Curso c41 = new Curso("calculo numerico",20,"prof1",31,1,a3);<br>
+        Curso c42 = new Curso("curso2",30,"prof2",41,4,a3);<br>
+        Curso c43 = new Curso("curso3",40,"prof3",51,5,a3);<br>
+        Curso c44 = new Curso("curso4",50,"prof4",61,6,a3);<br>
+        cursos.clear();<br>
+        cursos.add(c41);<br>
+        cursos.add(c42);<br>
+        cursos.add(c43);<br>
+        cursos.add(c44);<br>
+        a3.setCursos(cursos);<br>
+        session.save(a3);<br>
+        if (session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {<br>
+        session.getTransaction().commit();<br>
+        }<br>
+        session.close();<br>
+        }<br><br>
+
+        @Override<br>
+        public Double averageNotasPedro() {<br>
+        Session session = HibernateUtil.getSessionFactory().openSession();<br>
+        Query query = session.createQuery("select avg(c.nota) from Curso c inner join Alumno a on c.alumno.idAlumno = a.idAlumno where c.alumno.nombre = 'Pedro'");<br>
+        List&lt;Double> avgs =  query.list();<br>
+        session.close();<br>
+        return avgs.get(0);<br>
+        }<br><br>
+
+        @Override<br>
+        public List&lt;Curso> listCursosJuan() {<br>
+        Session session = HibernateUtil.getSessionFactory().openSession();<br>
+        Query query = session.createQuery("select c from Curso c inner join Alumno a on c.alumno.idAlumno = a.idAlumno where c.alumno.nombre = 'juan'");<br>
+        List&lt;Curso> cursos =  query.list();<br>
+        session.close();<br>
+        return cursos;<br>
+        }<br><br>
+
+        @Override<br>
+        public List&lt;Alumno> listCursosNombreEqualA() {<br>
+        Session session = HibernateUtil.getSessionFactory().openSession();<br>
+        Query query = session.createQuery("select a from Alumno a where a.nombre like 'A%'");<br>
+        List&lt;Alumno> alumnos =  query.list();<br>
+        session.close();<br>
+        return alumnos;<br>
+        }<br><br>
+
+        @Override<br>
+        public List&lt;Curso> getAlumnosMaximoCalculo() {<br>
+        Session session = HibernateUtil.getSessionFactory().openSession();<br>
+
+        Query query = session.createQuery("select c from Curso c inner join Alumno a on c.alumno.idAlumno = a.idAlumno where c.nombreCurso = 'calculo numerico' order by c.nota desc ");<br>
+        query.setMaxResults(2);<br>
+        List&lt;Curso> response = query.list();<br>
+        session.close();<br>
+        return response;<br>
+        }<br>
+        }<br><br>
+
+    </code>
+    <h5>interface AlumnoYCursoService</h5><br>
+    <code>
+        package com.spring.test.service;<br><br>
+
+        import com.spring.test.entity.Alumno;<br>
+        import com.spring.test.entity.Curso;<br><br>
+
+        import java.util.List;<br><br>
+
+        public interface AlumnoYCursoService {<br>
+        Double averageNotasPedro();<br>
+        List&lt;Alumno> listCursosNombreEqualA();<br>
+        List&lt;Curso> listCursoJuan();<br>
+        List&lt;Curso> getAlumnosMaximoCalculo();<br>
+        }<br><br>
+    </code>
+
+    <h5>Class AlumnoYCursoServiceImpl</h5>
+    <br>
+    <code>
+        package com.spring.test.service.impl;<br><br>
+
+        import com.spring.test.entity.Alumno;<br>
+        import com.spring.test.entity.Curso;<br>
+        import com.spring.test.repository.CreateQuery;<br>
+        import com.spring.test.repository.impl.CreateQueryImpl;<br>
+        import com.spring.test.service.AlumnoYCursoService;<br>
+        import org.springframework.stereotype.Service;<br><br>
+
+        import java.util.List;<br>
+        @Service("alumnoYCursolServiceImpl")<br>
+
+        public class AlumnoYCursoServiceImpl implements AlumnoYCursoService {<br>
+
+        private CreateQuery createQuery = new CreateQueryImpl();<br><br>
+
+        @Override<br>
+        public List&lt;Curso> listCursoJuan() {<br>
+        return createQuery.listCursosJuan();<br>
+        }<br><br>
+
+        @Override<br>
+        public List&lt;Curso> getAlumnosMaximoCalculo() {<br>
+        List&lt;Curso> curso = createQuery.getAlumnosMaximoCalculo();<br>
+        return curso;<br>
+        }<br><br>
+        @Override<br>
+        public Double averageNotasPedro() {<br>
+        return createQuery.averageNotasPedro();<br>
+        }<br><br>
+
+        @Override<br>
+        public List&lt;Alumno> listCursosNombreEqualA() {<br>
+        return createQuery.listCursosNombreEqualA();<br>
+        }<br>
+        }<br><br>
+
+    </code>
+    <br>
+    <h5>Class AlumnoYCursoController</h5>
+    <br>
+    <code>
+        import org.springframework.web.bind.annotation.GetMapping;<br>
+        import org.springframework.web.bind.annotation.RequestMapping;<br>
+        import org.springframework.web.servlet.ModelAndView;<br><br>
+
+        @Controller<br>
+        @RequestMapping("/hibernate")<br>
+        public class AlumnoYCursoController {<br><br>
+
+        @Autowired<br>
+        @Qualifier("alumnoYCursolServiceImpl")<br>
+        private AlumnoYCursoService alumnoYCursoService;<br><br>
+
+        @GetMapping("/alumnoCurso")<br>
+        public ModelAndView viewAlumnnoAndCurso(){<br>
+        ModelAndView modelAndView = new ModelAndView("alumnoAndCurso");<br>
+        System.out.println(alumnoYCursoService.averageNotasPedro());<br>
+        modelAndView.addObject("listCursosJuan", alumnoYCursoService.listCursoJuan());<br>
+        modelAndView.addObject("listPersonCalculo", alumnoYCursoService.getAlumnosMaximoCalculo());<br>
+        modelAndView.addObject("average", alumnoYCursoService.averageNotasPedro());<br>
+        modelAndView.addObject("listPersonA", alumnoYCursoService.listCursosNombreEqualA());<br>
+        return  modelAndView;
+        }
+        @GetMapping("/codigos")
+        public String viewCodeHibernate(){
+        return "hibernateCode";
+        }
+
+
+        }
+    </code>
+
+
+</div>
+
+</body>
+</html>

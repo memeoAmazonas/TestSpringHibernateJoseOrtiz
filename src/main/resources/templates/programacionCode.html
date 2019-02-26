@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Codigos de programacion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="nav" style="display: flex; margin-top: 20px; justify-content: space-evenly;">
+    <a th:href="@{/general/teoricas}">Preguntas Teoricas</a>
+    <a th:href="@{/general/programacion}">Programacion</a>
+    <a th:href="@{/hibernate/alumnoCurso}">Hibernate</a>
+    <a th:href="@{/persona/bean}">Spring</a>
+    <a th:href="@{/general/codigos}">Codigos Programacion</a>
+    <a th:href="@{/hibernate/codigos}">Codigos Hibernate</a>
+    <a th:href="@{/persona/codigos}">Codigos Spring</a>
+
+</nav>
+<hr>
+<br>
+<div class="container">
+    <h4>Interface GeneralService</h4>
+    <code>
+        package com.spring.test.service;<br>
+
+        import java.util.List;<br><br>
+
+        public interface GeneralService {<br>
+        String createSingleton(String name);<br>
+        List&lt;String> duplicate(String word);<br>
+        String reverse(String word);<br>
+        List&lt;Integer> orderList(int[] list);<br>
+            }<br>
+    </code>
+    <hr>
+    <h4>
+        Class GeneralServiceImpl
+    </h4>
+    <code>
+        package com.spring.test.service.impl;<br/><br/>
+
+        import com.spring.test.singleton.SingletonTest;<br/>
+        import org.springframework.stereotype.Service;<br/>
+
+        import java.util.ArrayList;<br/>
+        import java.util.HashMap;<br/>
+        import java.util.List;<br/><br/>
+
+        @Service("generalServiceImpl")<br/>
+        public class GeneralServiceImpl implements GeneralService {<br/><br/>
+        public int[] result;<br/><br/>
+
+        @Override<br/>
+        public String createSingleton(String name) {<br/>
+        SingletonTest singletonTest = SingletonTest.getInstance(name);<br/>
+        if (singletonTest.getName().equals(name)){<br/>
+        return "Objeto ".concat(name).concat(" Creado exitosamente");<br/>
+        }<br/>
+        return "Ya existe una instancia del objeto";<br/>
+        }<br/><br/>
+
+        @Override<br/>
+        public List&lt;String> duplicate(String word) {<br/>
+        HashMap&lt;Character, Integer> result = new HashMap&lt;>();<br/>
+        List&lt;String> response = new ArrayList&lt;>();<br/>
+        for (char str: word.toCharArray()) {<br/>
+        int value = (int)word.chars().filter(item -> item == str).count();<br/>
+        if(value > 1 && !result.containsKey(str))<br/>
+        result.put(str, value);<br/>
+        }<br/>
+        for (char i : result.keySet()) {<br/>
+        response.add("Caracter: " + i + " Numero de apariciones: " + result.get(i));<br/>
+        }<br/>
+        return response;<br/>
+        }<br/><br/>
+        @Override<br/>
+        public String reverse(String word) {<br/>
+        return word.length() == 1 ? word : reverse(word.substring(1)) + word.charAt(0);<br/>
+        }<br/><br/>
+
+        @Override<br/>
+        public List&lt;Integer> orderList(int [] list) {<br/>
+
+        result = list;<br/>
+        quickSort(0, list.length -1);<br/>
+        List&lt;Integer> response = new ArrayList();<br/>
+        for (int i = 0; i&lt;result.length; i++) {<br/>
+        response.add(result[i]);<br/>
+        }<br/>
+
+        return response;<br/>
+        }<br/><br/>
+
+        private void quickSort(int min, int max) {<br/>
+
+        int media = result[min+(max-min)/2],<br/>
+        i = min,<br/>
+        j = max;<br/>
+
+        while (j >= i){<br/>
+
+        while (media > result[i])<br/>
+        i++;<br/>
+
+        while (media &lt; result[j])<br/>
+        j--;<br/>
+
+        if(j >= i) {<br/>
+        change(i,j);<br/>
+        i++;<br/>
+        j--;<br/>
+        }<br/>
+        }<br/>
+
+        if (min &lt; j)<br/>
+        quickSort(min,j);<br/>
+
+        if (max > i)<br/>
+        quickSort(i, max);<br/>
+        }
+
+        private void change(int i, int j){<br/>
+        int actual = result[i];<br/>
+        result[i] = result[j];<br/>
+        result[j] = actual;<br/>
+        }<br/>
+        }<br/><br/>
+
+    </code>
+    <hr>
+    <h4>GeneralController</h4>
+    <code>
+        package com.spring.test.controller;<br/><br/>
+
+        import com.spring.test.service.GeneralService;<br/>
+        import org.springframework.beans.factory.annotation.Autowired;<br/>
+        import org.springframework.beans.factory.annotation.Qualifier;<br/>
+        import org.springframework.stereotype.Controller;<br/>
+        import org.springframework.web.bind.annotation.GetMapping;<br/>
+        import org.springframework.web.bind.annotation.RequestMapping;<br/>
+        import org.springframework.web.servlet.ModelAndView;<br/><br/>
+
+        @Controller<br/>
+        @RequestMapping("/general")<br/>
+        public class GeneralController {<br/><br/>
+
+        @Autowired<br/>
+        @Qualifier("generalServiceImpl")<br/>
+        private GeneralService generalService;<br/><br/>
+
+        @GetMapping("/programacion")<br/>
+        public ModelAndView viewSingleton(){<br/>
+        ModelAndView modelAndView = new ModelAndView("programacion");<br/>
+        modelAndView.addObject("value",generalService.createSingleton("Jose"));<br/>
+        modelAndView.addObject("value2",generalService.createSingleton("Jose2"));<br/>
+        modelAndView.addObject("duplicate", generalService.duplicate("aaavvveea1etyjngfffdcbhu"));<br/>
+        modelAndView.addObject("duplicate2", generalService.duplicate("aaavvveea1etyjngfffdcbhucdfgmjl9uygc57"));<br/>
+        modelAndView.addObject("str", generalService.reverse("Esto es una prueba de reverse"));<br/>
+        modelAndView.addObject("str2", generalService.reverse("Se puede reversar cualquier string"));<br/>
+        int[] test = { 5, 5, 6, 6, 4, 4, 5, 5, 4, 4, 6, 6, 5, 5 };<br/>
+        int[] test1 = { 5, 5, 6, 6, 45, 4,1,332,0, 5, 5, 4,1, 4,64, 6, 6, 51, 15, 17,9, 0 };<br/>
+        modelAndView.addObject("order1", generalService.orderList(test));<br/>
+        modelAndView.addObject("order2", generalService.orderList(test1));<br/>
+        return modelAndView;<br/>
+        }<br/><br/>
+        @GetMapping("/teoricas")<br/>
+        public String viewTeoricas(){<br/>
+        return "teoricas";<br/>
+        }<br/>
+        @GetMapping("/codigos")<br/>
+        public String viewCodeProgramacion(){<br/>
+        return "programacionCode";<br/>
+        }<br/>
+
+        }<br/>
+
+    </code>
+</div>
+<br>
+<br>
+
+</body>
+</html>
