@@ -18,6 +18,11 @@ Se debe modificar el archivo hibernate.cfg.xml
   <property name="hibernate.connection.username">{nombre usuario bd} por defecto root</property>
   <property name="hibernate.connection.password">{password usuario bd} por defecto ""</property>
  ```
+ #Esquema
+  ``` 
+  en la ruta /src/main/java/com/spring/test/utils/testSpring.sql
+  se encuentra el esquema de la bd.
+  ```
 
 ##Despliegue
 
